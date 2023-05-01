@@ -1,8 +1,9 @@
-package com.loci.colist
+package com.loci.colist.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.loci.colist.R
 import timber.log.Timber
 
 class IntroActivity : AppCompatActivity() {

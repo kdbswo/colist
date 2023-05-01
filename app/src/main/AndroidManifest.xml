@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Colist"
         tools:targetApi="31">
         <activity
-            android:name=".IntroActivity"
+            android:name=".view.IntroActivity"
             android:exported="true"
             android:theme="@style/Theme.Colist.Splash">
             <meta-data
