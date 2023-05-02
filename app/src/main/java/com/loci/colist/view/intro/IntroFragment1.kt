@@ -1,4 +1,4 @@
-package com.loci.colist.view
+package com.loci.colist.view.intro
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

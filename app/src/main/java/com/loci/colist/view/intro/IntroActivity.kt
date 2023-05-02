@@ -1,4 +1,4 @@
-package com.loci.colist.view
+package com.loci.colist.view.intro
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
