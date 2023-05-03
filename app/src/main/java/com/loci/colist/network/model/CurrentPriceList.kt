@@ -1,8 +1,6 @@
 package com.loci.colist.network.model
 
-data class CurrentPriceList (
-
-    val status : String,
-    val data : Map<String, Any>
-
-        )
+data class CurrentPriceList(
+    val status: String,
+    val data: Map<String, Any>
+)
