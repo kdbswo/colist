@@ -36,6 +36,8 @@ class SelectActivity : AppCompatActivity() {
             Timber.d(it.toString())
         })
 
+        viewModel.setUpFirstFlag()
+
         binding.laterTextArea.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
