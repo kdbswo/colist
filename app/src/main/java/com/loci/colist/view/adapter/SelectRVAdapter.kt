@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.loci.colist.R
 import com.loci.colist.dataModel.CurrentPriceResult
+import timber.log.Timber
 
 class SelectRVAdapter(val context: Context, val coinPriceList: List<CurrentPriceResult>) :
     RecyclerView.Adapter<SelectRVAdapter.ViewHolder>() {
@@ -51,7 +52,6 @@ class SelectRVAdapter(val context: Context, val coinPriceList: List<CurrentPrice
         }
 
         likeImage.setOnClickListener {
-
             if (selectedCoinList.contains(currentCoin)) {
                 selectedCoinList.remove(currentCoin)
                 likeImage.setImageResource(R.drawable.like_grey)
@@ -59,9 +59,9 @@ class SelectRVAdapter(val context: Context, val coinPriceList: List<CurrentPrice
                 selectedCoinList.add(currentCoin)
                 likeImage.setImageResource(R.drawable.like_red)
             }
+            Timber.d(selectedCoinList.toString())
 
         }
-
     }
 
     override fun getItemCount(): Int {
