@@ -35,6 +35,7 @@ class IntroActivity : AppCompatActivity() {
                 startActivity(intent)
             }else{
                 //처음 접속
+                binding.animationView.visibility = View.INVISIBLE
                 binding.fragmentContainerView.visibility = View.VISIBLE
             }
         })
