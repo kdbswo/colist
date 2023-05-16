@@ -45,9 +45,9 @@ class SelectRVAdapter(val context: Context, val coinPriceList: List<CurrentPrice
         val likeImage = holder.likeBtn
         val currentCoin = coinPriceList[position].coinName
 //        view를 그려줄때
-        if(selectedCoinList.contains(currentCoin)){
+        if (selectedCoinList.contains(currentCoin)) {
             likeImage.setImageResource(R.drawable.like_red)
-        }else{
+        } else {
             likeImage.setImageResource(R.drawable.like_grey)
         }
 
