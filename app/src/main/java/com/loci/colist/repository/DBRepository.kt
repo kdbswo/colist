@@ -3,6 +3,7 @@ package com.loci.colist.repository
 import com.loci.colist.App
 import com.loci.colist.db.CoinPriceDatabase
 import com.loci.colist.db.entity.InterestCoinEntity
+import com.loci.colist.db.entity.SelectedCoinPriceEntity
 
 class DBRepository {
 
@@ -21,7 +22,13 @@ class DBRepository {
     //코인데이터 업데이트
     fun updateInterestCoinData(interestCoinEntity: InterestCoinEntity) = db.interestCoinDAO().update(interestCoinEntity)
 
-
     //사용자가 관심있어한 코인 가져오기
     fun getAllInterestSelectedCoinData() = db.interestCoinDAO().getSelectedData()
+
+    // CoinPrice
+    fun getAllCoinPriceData() = db.selectedCoinDAO().getAllData()
+
+    fun insertCoinPriceData(selectedCoinPriceEntity: SelectedCoinPriceEntity) = db.selectedCoinDAO().insert(selectedCoinPriceEntity)
+
+    fun getOneSelectedCoinData(coinName: String) = db.selectedCoinDAO().getOneCoinData(coinName)
 }
