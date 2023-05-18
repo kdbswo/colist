@@ -6,10 +6,15 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
+import com.loci.colist.background.GetCoinPriceRecentContractedWorkManager
 import com.loci.colist.view.main.MainActivity
 import com.loci.colist.databinding.ActivitySelectBinding
 import com.loci.colist.view.adapter.SelectRVAdapter
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 // https://api.bithumb.com/public/ticker/ALL_KRW \
 class SelectActivity : AppCompatActivity() {
@@ -49,11 +54,42 @@ class SelectActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
 
+                saveInterestCoinDataPeriodic()
+
+
             }
         })
 
     }
+
+    private fun saveInterestCoinDataPeriodic() {
+
+        val myWork = PeriodicWorkRequest.Builder(
+            GetCoinPriceRecentContractedWorkManager::class.java, 15, TimeUnit.MINUTES
+        ).build()
+
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            "GetCoinPriceRecentContractedWorkManager",
+            ExistingPeriodicWorkPolicy.KEEP,
+            myWork
+        )
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
