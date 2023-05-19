@@ -3,9 +3,12 @@ package com.loci.colist.background
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.loci.colist.db.entity.SelectedCoinPriceEntity
+import com.loci.colist.network.model.RecentCoinPriceList
 import com.loci.colist.repository.DBRepository
 import com.loci.colist.repository.NetWorkRepository
 import timber.log.Timber
+import java.util.*
 
 // 최근 거래된 코인 가격 내역을 가져오는 WorkManager
 
@@ -37,12 +40,50 @@ class GetCoinPriceRecentContractedWorkManager(
 
             Timber.d(coinData.toString())
 
+            val timeStamp = Calendar.getInstance().time
+
             val recentCoinPriceList = netWorkRepository.getRecentCoinPrice(coinData.coin_name)
 
             Timber.d(recentCoinPriceList.toString())
+
+            saveSelectedCoinPrice(coinData.coin_name, recentCoinPriceList, timeStamp)
         }
 
     }
 
+    fun saveSelectedCoinPrice(
+        coinName: String,
+        recentCoinPriceList: RecentCoinPriceList,
+        timeStamp: Date
+    ) {
+        val selectedCoinPriceEntity = SelectedCoinPriceEntity(
+            0,
+            coinName,
+            recentCoinPriceList.data[0].transaction_date,
+            recentCoinPriceList.data[0].type,
+            recentCoinPriceList.data[0].units_traded,
+            recentCoinPriceList.data[0].price,
+            recentCoinPriceList.data[0].total,
+            timeStamp
+        )
+
+        dbRepository.insertCoinPriceData(selectedCoinPriceEntity)
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
